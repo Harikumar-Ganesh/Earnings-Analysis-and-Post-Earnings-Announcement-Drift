@@ -107,3 +107,11 @@ I learned a lot from building this project. I learned how surprise percentage is
 Optional:
 The included CSV contains earnings data from Q4 2024 to Q3 2025.  
 If you want to analyze different stocks, dates, or time periods, you can edit the CSV file with new tickers, earnings dates, expected EPS, and actual EPS. The tool will still work without changing the code.
+
+## Next Steps:
+
+ ## - Implement Logarithm Based Calculations to make the return more accurate and effective
+
+ ## - Implement Sector Specific Benchmarks (Ex. JPM vs XLF; AAPL vs XLK; JNJ vs XLV)
+
+ ## - Implement t-testing to solidify whether data is just "noise" or statistically relevant
