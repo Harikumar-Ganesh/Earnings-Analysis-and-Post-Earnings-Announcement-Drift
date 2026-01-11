@@ -55,6 +55,24 @@ The second visualization (a bar graph) compares the average performance of posit
 
 Together, these graphs allow users to explore whether PEAD appears under different benchmark conditions and across different sets of tickers (by modifying the input data as described in the run instructions).
 
+
+## Sample Output
+
+Below are example visualizations generated using the S&P 500 (^GSPC) as the benchmark:
+
+### 1: Earnings Surprise vs Cumulative Abnormal Return (Scatter Plot)
+<img width="1000" height="600" alt="surprise_vs_car" src="https://github.com/user-attachments/assets/d89c876d-0f29-4931-ad5a-791cb22b19c4" />
+
+This scatter plot shows the relationship between earnings surprise percentage and CAR for all 60 events. Points in the upper-right quadrant represent stocks that beat expectations and outperformed the market, while points in the lower-left represent misses that underperformed.
+
+### 2: Average CAR: Beats vs Misses
+<img width="800" height="600" alt="beats_vs_misses" src="https://github.com/user-attachments/assets/b16e68c2-781d-41ea-bc83-5dd037c75b43" />
+
+This bar chart compares the average CAR for earnings beats (+0.42%) versus misses (-3.84%). The results suggest that markets continue to drift in the direction of the earnings surprise, providing evidence of post-earnings announcement drift.
+
+## Note: These results are based on the included dataset (Q4 2024 - Q3 2025). Your results may vary if you modify the CSV with different stocks, dates, or use a different benchmark.
+
+
 ## Limitations
 
 
