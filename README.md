@@ -6,10 +6,10 @@ This project is a tool to help understand and visualize post-earnings announceme
 
 It uses cumulative abnormal return (CAR) to measure how stocks behave around earnings announcements. The scatter plot shows all events with their surprise percentages and CAR, which makes it easier to see patterns and outliers. The bar chart compares the average CAR for earnings beats versus earnings misses, helping show whether positive surprises tend to be followed by stronger performance.
 
-I feel this tool can be useful for anyone who wants to see PEAD in action or compare how different benchmarks affect the results.
+I believe this tool can be useful for anyone who wants to see PEAD in action or compare how different benchmarks affect the results.
 
 ## Motivation
-As long I can remember, I’ve been interested in computers. I always wanted to be on one (whether it was playing games on the Nickelodeon website or getting through those dreaded Study Island assignments), but I never really understood what computers could actually be used for beyond that.
+For as long as I can remember, I’ve been interested in computers. I always wanted to be on one (whether it was playing games on the Nickelodeon website or getting through those dreaded Study Island assignments), but I never really understood what computers could actually be used for beyond that.
 
 Now, as a junior in high school interested in finance and data analysis, I wanted to combine my interest in computers with my interest in markets to better understand how post-earnings announcement drift (PEAD) works. Along the way, I also wanted to build something practical (a tool that other people interested in finance could use or modify).
 
