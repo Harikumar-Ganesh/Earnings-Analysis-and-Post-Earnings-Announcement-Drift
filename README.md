@@ -71,7 +71,23 @@ This scatter plot shows the relationship between earnings surprise percentage an
 This bar chart compares the average CAR for earnings beats (+0.42%) versus misses (-3.84%). The results suggest that markets continue to drift in the direction of the earnings surprise, providing evidence of post-earnings announcement drift.
 
 ## Note: These results are based on the included dataset (Q4 2024 - Q3 2025). Your results may vary if you modify the CSV with different stocks, dates, or use a different benchmark.
+## Interactive Visualizations
 
+In addition to static PNG images, the tool generates **interactive HTML visualizations** using Plotly.
+
+**Features of interactive charts:**
+- Hover over any data point to see the ticker symbol and announcement date
+- Zoom in/out to focus on specific regions
+- Pan across the chart
+- Download customized views as PNG
+- Better for exploring outliers and patterns
+
+**To use:** Simply open `surprise_vs_car_interactive.html`in your web browser after running the tool.
+
+This interactive chart are especially useful for:
+- Identifying which specific stocks drove extreme returns
+- Comparing multiple earnings events for the same company
+- Presenting findings in an engaging, exploratory format
 
 ## Limitations
 
@@ -89,24 +105,33 @@ I learned a lot from building this project. I learned how surprise percentage is
 
 ## How to Run
 
-1. Install the required libraries:
-   - yfinance  
-   - pandas  
-   - matplotlib  
+Install the required libraries:
+```bash
+pip install yfinance pandas matplotlib plotly
+```
 
-2. Download both `earningsanalysis.py` and `earningsanalysisdata.csv`.
+Download both `earningsanalysis.py` and `earningsanalysis_data.csv`.
 
-3. Place both files in the same folder.
+Place both files in the same folder.
 
-4. Run the Python file.
+Run the Python file:
+```bash
+python earningsanalysis.py
+```
 
-5. The program will generate two image files:
-   - surprise_vs_car.png  
-   - beats_vs_misses.png  
+When prompted, select a benchmark index (or press Enter for S&P 500).
 
-Optional:
-The included CSV contains earnings data from Q4 2024 to Q3 2025.  
+The program will generate **four output files**:
+- `surprise_vs_car.png` (static scatter plot)
+- `surprise_vs_car_interactive.html` (interactive scatter plot - **hover to see ticker and date**)
+- `beats_vs_misses.png` (static bar chart)
+- `beats_vs_misses_interactive.html` (interactive bar chart)
+
+**To view interactive charts:** Open the `.html` files in any web browser. You can hover over data points to see details, zoom in/out, and explore the data.
+
+**Optional:** The included CSV contains earnings data from Q4 2024 to Q3 2025.
 If you want to analyze different stocks, dates, or time periods, you can edit the CSV file with new tickers, earnings dates, expected EPS, and actual EPS. The tool will still work without changing the code.
+
 
 ## Next Steps:
 
