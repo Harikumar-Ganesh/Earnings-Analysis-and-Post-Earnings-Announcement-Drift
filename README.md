@@ -125,7 +125,6 @@ The program will generate **four output files**:
 - `surprise_vs_car.png` (static scatter plot)
 - `surprise_vs_car_interactive.html` (interactive scatter plot - **hover to see ticker and date**)
 - `beats_vs_misses.png` (static bar chart)
-- `beats_vs_misses_interactive.html` (interactive bar chart)
 
 **To view interactive charts:** Open the `.html` files in any web browser. You can hover over data points to see details, zoom in/out, and explore the data.
 
