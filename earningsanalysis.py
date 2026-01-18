@@ -1,7 +1,8 @@
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import plotly.express as px
+import plotly.graph_objects as go
 # This function finds the stock prices for a given ticker symbol between beginning of year to October 31, 2024
 def get_stock_prices(ticker, start_date, end_date):
     data = yf.download(ticker, start=start_date, end=end_date, progress=False)
@@ -151,7 +152,16 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("surprise_vs_car.png")
 print("Saved: surprise_vs_car.png")
-
+# Interactive Webpage where the user can see where each ticker lies on graph #1 with name, quarter, and value
+fig = px.scatter(all_results, x='Surprise Percentage', y='CAR', hover_data=['Ticker', 'Date'], title=f'Earnings Surprise vs Stock Return (vs {benchmark_ticker})',
+    labels={'Surprise Percentage': 'Earnings Surprise (%)', 'CAR': 'Cumulative Abnormal Return (%)'},
+    opacity=0.6)
+fig.add_hline(y=0, line_dash="dash", line_color="red", line_width=1)
+fig.add_vline(x=0, line_dash="dash", line_color="red", line_width=1)
+fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
+fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='lightgray')
+fig.write_html("surprise_vs_car_interactive.html")
+print("Saved: surprise_vs_car_interactive.html")
 # Graph 2: Bar chart comparing average CAR for beats vs misses
 plt.figure(figsize=(8, 6))
 categories = ['Beats', 'Misses']
