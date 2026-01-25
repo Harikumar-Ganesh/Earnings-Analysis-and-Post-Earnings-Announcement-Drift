@@ -133,10 +133,9 @@ If you want to analyze different stocks, dates, or time periods, you can edit th
 
 
 ## Next Steps:
-
+   ## Completed!
  - Implement Logarithm Based Calculations to make the return more accurate and effective
-    ## Completed!
-
+## Yet to add! 
  - Implement Sector Specific Benchmarks (Ex. JPM vs XLF; AAPL vs XLK; JNJ vs XLV)
 
  - Implement t-testing to solidify whether data is just "noise" or statistically relevant
