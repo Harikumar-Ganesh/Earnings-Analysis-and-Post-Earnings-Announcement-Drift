@@ -107,9 +107,12 @@ I learned a lot from building this project. I learned how surprise percentage is
 
 Install the required libraries:
 ```bash
-pip install yfinance pandas matplotlib plotly
+pip install yfinance pandas matplotlib plotly numpy
 ```
-
+ ## If this does not work:
+ ```bash
+pip3 install yfinance pandas matplotlib plotly numpy
+```
 Download both `earningsanalysis.py` and `earningsanalysis_data.csv`.
 
 Place both files in the same folder.
