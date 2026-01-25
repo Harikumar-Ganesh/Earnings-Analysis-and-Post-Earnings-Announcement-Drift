@@ -109,7 +109,7 @@ Install the required libraries:
 ```bash
 pip install yfinance pandas matplotlib plotly numpy
 ```
- ## If this does not work:
+If this does not work, try:
  ```bash
 pip3 install yfinance pandas matplotlib plotly numpy
 ```
