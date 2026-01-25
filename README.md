@@ -109,7 +109,7 @@ Install the required libraries:
 ```bash
 pip install yfinance pandas matplotlib plotly numpy
 ```
-If this does not work, try:
+**If this does not work, try:**
  ```bash
 pip3 install yfinance pandas matplotlib plotly numpy
 ```
@@ -124,7 +124,7 @@ python earningsanalysis.py
 
 When prompted, select a benchmark index (or press Enter for S&P 500).
 
-The program will generate **four output files**:
+The program will generate **three output files**:
 - `surprise_vs_car.png` (static scatter plot)
 - `surprise_vs_car_interactive.html` (interactive scatter plot - **hover to see ticker and date**)
 - `beats_vs_misses.png` (static bar chart)
