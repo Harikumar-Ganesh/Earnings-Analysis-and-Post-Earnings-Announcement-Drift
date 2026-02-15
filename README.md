@@ -107,11 +107,11 @@ I learned a lot from building this project. I learned how surprise percentage is
 
 Install the required libraries:
 ```bash
-pip install yfinance pandas matplotlib plotly numpy
+pip install yfinance pandas matplotlib plotly numpy scipy
 ```
 **If this does not work, try:**
  ```bash
-pip3 install yfinance pandas matplotlib plotly numpy
+pip3 install yfinance pandas matplotlib plotly numpy scipy
 ```
 Download both `earningsanalysis.py` and `earningsanalysis_data.csv`.
 
@@ -138,7 +138,6 @@ If you want to analyze different stocks, dates, or time periods, you can edit th
 ## Next Steps:
    ## Completed!
  - Implement Logarithm Based Calculations to make the return more accurate and effective
+ - Created a bootstrapping algorithm to test relevancy in data
 ## Yet to add! 
  - Implement Sector Specific Benchmarks (Ex. JPM vs XLF; AAPL vs XLK; JNJ vs XLV)
-
- - Implement t-testing to solidify whether data is just "noise" or statistically relevant
