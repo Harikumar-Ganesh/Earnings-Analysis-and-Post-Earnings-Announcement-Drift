@@ -4,10 +4,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
+from scipy import stats
 
 # This function finds the stock prices for a given ticker symbol
 def get_stock_prices(ticker, start_date, end_date, use_log_returns=True):
-  
+    """
+    Pull stock prices and calculate returns.
+    
+    Parameters:
+    - use_log_returns: if True, use log returns; if False, use simple returns
+    """
     data = yf.download(ticker, start=start_date, end=end_date, progress=False)
     data = data[['Close']].copy()
     
@@ -27,6 +33,33 @@ def calculate_surprise(csv_path):
     earnings['Surprise Percentage'] = (earnings['Actual_EPS'] - earnings['Expected_EPS']) / earnings['Expected_EPS'].abs()
     earnings['Surprise Percentage'] = earnings['Surprise Percentage'] * 100
     return earnings
+#Bootstrapping function to test validity of CAR data
+def bootstrap_CAR(data,iterations=10000):
+    means=[]
+    for i in range (iterations):
+        sample=np.random.choice(data, size=len(data), replace= True)
+        means.append(sample.mean())
+    car_mean=np.mean(data)
+    ci_upper=np.percentile(means, 97.5)
+    ci_lower=np.percentile(means,2.5)
+    if car_mean>0:
+        p_value=(np.sum(np.array(means)<=0)/iterations)
+    else:
+        p_value=(np.sum(np.array(means)>=0)/iterations)
+    return car_mean,(ci_lower,ci_upper),p_value
+#Bootstrapping function to test differences
+def bootstrap_difference(d1, d2, iterations=10000):
+    differences=[]
+    for i in range(iterations):
+        s1=np.random.choice(d1,size=len(d1),replace=True)
+        s2=np.random.choice(d2, size=len(d2), replace= True)
+        differences.append(s1.mean()-s2.mean())
+    mean_difference=np.mean(d1) - np.mean(d2)
+    ci_upperdiff=np.percentile(differences,97.5)
+    ci_lowerdiff=np.percentile(differences,2.5)
+    p_value = np.sum(np.array(differences) <= 0) / iterations
+    return mean_difference, (ci_lowerdiff, ci_upperdiff), p_value 
+
 
 # This function utilizes aggregate market data from a user-specified benchmark
 def market_data(start_date, end_date, index_ticker='^GSPC', use_log_returns=True):
@@ -66,7 +99,6 @@ def calculate_abnormal_returns(ticker, announcement_date, benchmark='^GSPC', win
 
 # This function analyzes all earnings events from the CSV and calculates CAR for each event
 def analyze_earnings(csv_path, benchmark='^GSPC', use_log_returns=True):
-    """Analyze all earnings events using specified benchmark and return calculation method."""
     earnings = calculate_surprise(csv_path)
     results = []
     
@@ -121,8 +153,8 @@ print(f"\nUsing benchmark: {benchmark_ticker}")
 
 # User selects return type
 print("\nReturn calculation method:")
-print("  1 - Log returns")
-print("  2 - Simple returns")
+print("  1 - Log returns (recommended for academic rigor)")
+print("  2 - Simple returns (easier to interpret)")
 return_choice = input("Enter choice (press Enter for log returns): ").strip()
 
 use_log_returns = True if return_choice == '1' else False
@@ -215,6 +247,41 @@ plt.tight_layout()
 plt.savefig('beats_vs_misses.png')
 print("Saved: beats_vs_misses.png")
 
-print("\nVisualization complete!")
-print("="*60)
-print("="*60)
+print("\n" + "="*60)
+print("Bootstrap Analysis of data (10,000 Iterations)")
+print("\n" + "="*60)
+# Bootstrap for beats
+beats_mean, beats_ci, beats_p = bootstrap_CAR(beats['CAR'].values)
+print("Beats:")
+print(f"  Mean CAR: {beats_mean:.2f}%")
+print(f"  95% CI: [{beats_ci[0]:.2f}%, {beats_ci[1]:.2f}%]")
+print(f"  P-value: {beats_p:.4f}")
+if beats_p < 0.05:
+    print("Statistically significant at 5% level")
+else:
+    print("Not statistically significant")
+
+# Bootstrap for misses
+misses_mean, misses_ci, misses_p = bootstrap_CAR(misses['CAR'].values)
+print("\nMisses:")
+print(f"  Mean CAR: {misses_mean:.2f}%")
+print(f"  95% CI: [{misses_ci[0]:.2f}%, {misses_ci[1]:.2f}%]")
+print(f"  P-value: {misses_p:.4f}")
+if misses_p < 0.05:
+    print("Statistically significant at 5% level")
+else:
+    print("Not statistically significant")
+
+# Bootstrap for difference (beats - misses)
+diff_mean, diff_ci, diff_p = bootstrap_difference(beats['CAR'].values, misses['CAR'].values)
+print("\nDifference (Beats - Misses):")
+print(f"  Mean difference: {diff_mean:.2f}%")
+print(f"  95% CI: [{diff_ci[0]:.2f}%, {diff_ci[1]:.2f}%]")
+print(f"  P-value: {diff_p:.4f}")
+if diff_p < 0.05:
+    print("Beats significantly outperform misses")
+else:
+    print("Difference not statistically significant")
+
+print("\n" + "="*60)
+print("Bootstrap analysis complete!")
